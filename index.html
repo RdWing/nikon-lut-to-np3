@@ -7,34 +7,30 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; worker-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'"
     />
-    <title>Color Transfer — LUT to NP3</title>
+    <title>LUT to Picture Control</title>
     <link rel="stylesheet" href="style.min.css" />
   </head>
   <body>
     <main>
       <header>
-        <p class="eyebrow">COLOR TRANSFER · RESEARCH PREVIEW</p>
-        <h1>A LUT, translated to Picture Control.</h1>
-        <p>
-          Fit a Rec.2020 / N-Log LUT to a Flexible Color preset with a
-          nine-point tone curve, Color Blender and Color Grading.
-        </p>
+        <h1>LUT to Picture Control</h1>
+        <p>Create a Nikon Flexible Color preset from an N-Log LUT.</p>
         <p class="pipeline">
           Rec.2020 / N-Log → Rec.709 / BT.1886 → sRGB target
         </p>
       </header>
       <div class="layout">
         <section aria-labelledby="fit-title">
-          <h2 id="fit-title">Prepare the fit</h2>
+          <h2 id="fit-title">LUT settings</h2>
           <form id="form" novalidate>
-            <p class="hint">Calibration is bundled. Choose a LUT to begin.</p>
-          <label for="lut">Creative LUT</label
+            <p class="hint">Choose a .cube file to fit.</p>
+          <label for="lut">LUT file (.cube)</label
             ><input id="lut" type="file" accept=".cube" required /><label
               for="name"
               >Picture Control name</label
             ><input
               id="name"
-              value="COLOR TRANSFER"
+              value="CUSTOM LUT"
               maxlength="20"
               required
               pattern="[ -~]{1,20}"
@@ -50,30 +46,32 @@
               ><button id="cancel" type="button" disabled>Cancel</button>
             </div>
           </form>
-          <p class="privacy">
-            Your files stay in this browser. No upload, account, analytics or
-            external runtime.
-          </p>
+          <p class="privacy">Files are processed locally in your browser.</p>
         </section>
         <section aria-labelledby="result-title">
-          <h2 id="result-title">Fit result</h2>
+          <h2 id="result-title">Result</h2>
           <p id="status" role="status" aria-live="polite">
             Choose a LUT to begin.
           </p>
           <div id="result"></div>
           <aside>
-            <h3>What the fit can establish</h3>
             <p>
-              This is a bounded approximation, not an arbitrary 3D LUT inside
-              the camera. The mapping uses the research baseline’s provisional
-              +1.207630378 EV normalization. Use sRGB with Active D-Lighting
-              Off; do not add this as camera exposure compensation.
+              Check the preset in NX Studio before using it. Set the output
+              color space to sRGB and Active D-Lighting to Off.
             </p>
-            <p>
-              Errors estimate synthetic color-cell responses. Every generated
-              preset is a model prediction and should be checked in NX Studio.
-              Targets outside model coverage receive a warning.
-            </p>
+            <details>
+              <summary>Calibration details</summary>
+              <p>
+                The fit approximates your LUT using a tone curve, Color Blender
+                and Color Grading. It uses provisional +1.207630378 EV
+                normalization. Do not add this as camera exposure compensation.
+              </p>
+              <p>
+                Errors estimate synthetic color-cell responses. Every generated
+                preset is a model prediction and should be checked in NX Studio.
+                Targets outside model coverage receive a warning.
+              </p>
+            </details>
           </aside>
         </section>
       </div>

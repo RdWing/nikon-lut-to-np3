@@ -1,10 +1,10 @@
 {
   "version": 1,
   "files": {
-    "index.html": "ee59bf090660faf75e217cf62a0ff537174c6b80b311488ee8ea09f955b798ab",
+    "index.html": "a88eccd89fdbf73472f4c614f11f06c78de97bd8f23a6f8dc8779a491eb87524",
     "app.min.js": "f11b4be00e2170df336640255df16e420faaaebde88792d476f54fc6e454486b",
     "worker.min.js": "dde67cc31660026c37bd98b0753d699d5f1db5a98f59dcaf8c360e228a48c6c4",
-    "style.min.css": "c928a6818c3730acfb64b090316ad55b08e03d5675f9bf61491ffa285c101259",
+    "style.min.css": "ea279cb91bf1746be6f448f6d69fb05026ac84f95689df380e5d5e664258c1b3",
     "fit.wasm": "32743c65ddf093eb5f0e7ae756d2c8c66b1179f225348263c1c1dc69851b95ce",
     "model.json.gz": "b0a1b48d9bf034dbaec8913fec12a8a72cadf8a07338c770284833ab16a9f3d9"
   }
