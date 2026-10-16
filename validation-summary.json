@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "qualification": "Implementation and response-model checks only; no NX-validated presets",
+  "nx_validation": false,
+  "exact_lut_cache": false,
+  "regions": 9,
+  "synthetic_cells": 313,
+  "covered_regression_luts": 9,
+  "model_sha256": "b0a1b48d9bf034dbaec8913fec12a8a72cadf8a07338c770284833ab16a9f3d9",
+  "tone_max_absolute_lab_error": 1.12e-13
+}
