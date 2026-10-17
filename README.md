@@ -11,3 +11,5 @@ Every generated result is a prediction that should be checked in NX Studio. A si
 The distributed numerical data comes from generated color samples and derived response experiments. It contains no source photographs, private image-calibration samples, Nikon binaries, raw vendor tables, prepared memory, user LUTs or validated presets.
 
 See [model and fitting details](CALIBRATION.md), [verification](VALIDATION.md), and [notice](NOTICE.md).
+
+The fitter increases lightness priority for strongly compressed-shadow targets, based on the LUT’s TRC-compensated gray response. This heuristic reduced the targeted regressions in the current NX test corpus; it does not guarantee a better match for every scene or LUT. See [verification](VALIDATION.md) and [model details](CALIBRATION.md).

@@ -22,10 +22,16 @@ The fitter optimizes all 36 modeled color controls and the custom curve jointly.
 
 Six starts combine three grading initializations with both the TRC-compensated curve and an identity curve. The curve begins with nine points and can grow to 20 where an added point reduces the complete color objective. Both endpoints may move, and the encoded curve must remain monotonic. A final joint pass refines all controls after adaptive curve placement. No stored recipe initializes the fit.
 
-The data objective is weighted mean Delta E76 in Lab. Half of the sample weight is uniform and half is distributed evenly across populated brightness/chroma/hue strata. A small control-size penalty discourages compensating extreme settings: `0.2 * sum(((control - center)/100)^2)`. Cyclic hue angles are exempt; Blending is centered at 50 and other penalized controls at zero. All encoded ranges remain available. Curve ordinates are not penalized this way. Reports separate this penalty from color-error metrics.
+The data objective is weighted mean Lab distance. For strongly compressed-shadow targets it uses `sqrt((4*dL)^2 + da^2 + db^2)`; otherwise it uses ordinary Delta E76. Reported Delta E76 metrics always remain unweighted and comparable. Half of the sample weight is uniform and half is distributed evenly across populated brightness/chroma/hue strata. A small control-size penalty discourages compensating extreme settings: `0.2 * sum(((control - center)/100)^2)`. Cyclic hue angles are exempt; Blending is centered at 50 and other penalized controls at zero. All encoded ranges remain available. Curve ordinates are not penalized this way. Reports separate this penalty from color-error metrics.
 
 Half of the generated sample indices are reserved from optimization. Their errors are synthetic-model predictions, not measurements of the user's LUT in a camera or NX Studio. Extreme combinations and colors near clipping can have larger errors than the tested recipes. A low reported score does not guarantee fidelity on every photograph.
 
 ## Distribution boundary
 
 The public assets contain the original interpreter and optimizer, synthetic response data, and generic NP3 encoding logic. No real-image calibration samples, Nikon binaries, raw vendor coefficient arrays, prepared runtime state, original NEFs, TIFFs, LUT files, validated recipes, NP3 banks or exact-LUT caches are shipped. Private qualification exports are summarized only as aggregate metrics.
+
+## Tone-dependent fitting priority
+
+The TRC-compensated gray initializer supplies shadow output C(32) and midtone output C(128), in 0–255 curve coordinates. The shadow-to-midtone ratio is `(C(32)/32)/(C(128)/128)`. If the middle response is valid and positive and the ratio is below 0.25, the public fitter uses lightness weight 4; otherwise it retains weight 1. The same weight enters the numerical proposal and the acceptance loss. This is a generic rule computed from the supplied LUT, not a LUT-name match or stored recipe.
+
+The threshold and weight are fitting heuristics selected using the existing nine-LUT research corpus. They are not recovered Nikon processing rules and have not established universal generalization. Extreme, unusual and near-threshold LUTs still need visual and NX checks. The fit report records the policy, ratio and applied weight. The private native-model backend retains its independently qualified standard objective unless an explicit weight is requested.

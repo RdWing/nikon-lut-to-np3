@@ -4,23 +4,26 @@
   "nx_validation": false,
   "exact_lut_cache": false,
   "model_sha256": "671055b4026cb72f4953b1e2a1fc7ecba84b227c561b3430987974c9bb03cc49",
-  "pipeline": "fixed121-synthetic-joint-v2",
+  "pipeline": "fixed121-synthetic-joint-v3",
   "synthetic_samples": 1461,
-  "code_tests_passed": 32,
+  "code_tests_passed": 35,
   "bundled_worker_cli_np3_matches": 9,
   "qualification_campaign": {
     "gates_passed": true,
-    "fresh_candidate_nx_renders": 24,
-    "unchanged_candidate_renders_reused": 12,
+    "fresh_candidate_nx_renders": 16,
+    "exploratory_nx_renders": 44,
+    "unchanged_candidate_renders_reused": 20,
     "frozen_baseline_nx_renders": 36,
     "luts": 9,
     "reused_scenes": 4,
-    "candidate_mean_delta_e76": 1.9561520440494629,
-    "previous_mean_delta_e76": 2.126804541673752,
-    "improvement_percent": 8.023891912981767,
+    "candidate_mean_delta_e76": 1.890838317148534,
+    "previous_mean_delta_e76": 1.956152044049463,
+    "improvement_percent": 3.338888053186405,
+    "targeted_luts_improved": 4,
+    "other_luts_byte_identical": 5,
     "max_prediction_mean_delta_e76": 0.760115773484542,
-    "max_prediction_p95_delta_e76": 1.5143020161290965,
-    "max_per_lut_mean_regression": 0.12386525127211634
+    "max_prediction_p95_delta_e76": 1.4227368610402955,
+    "max_targeted_scene_regression": 0.07485017425406482
   },
   "extreme_control_reference_check": {
     "recipes": 21,
@@ -28,5 +31,12 @@
     "worst_p95_delta_e76": 3.305391825175343,
     "worst_pixel_delta_e76": 29.843247203703022,
     "qualification": "Private reference comparison including randomized full-range controls; not an NX or camera test"
+  },
+  "tone_objective": {
+    "policy": "compressed-shadow-lightness-v1",
+    "shadow_to_midtone_ratio_threshold": 0.25,
+    "compressed_shadow_lightness_weight": 4,
+    "other_lightness_weight": 1,
+    "qualification": "Heuristic selected on reused validation corpus; not Nikon renderer behavior or a universal perceptual rule"
   }
 }
