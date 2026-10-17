@@ -1,11 +1,32 @@
 {
   "passed": true,
-  "qualification": "Implementation and response-model checks only; no NX-validated presets",
+  "qualification": "Model release qualification on four reused scenes; generated presets remain predictions",
   "nx_validation": false,
   "exact_lut_cache": false,
-  "regions": 9,
-  "synthetic_cells": 313,
-  "covered_regression_luts": 9,
-  "model_sha256": "b0a1b48d9bf034dbaec8913fec12a8a72cadf8a07338c770284833ab16a9f3d9",
-  "tone_max_absolute_lab_error": 1.12e-13
+  "model_sha256": "671055b4026cb72f4953b1e2a1fc7ecba84b227c561b3430987974c9bb03cc49",
+  "pipeline": "fixed121-synthetic-joint-v2",
+  "synthetic_samples": 1461,
+  "code_tests_passed": 32,
+  "bundled_worker_cli_np3_matches": 9,
+  "qualification_campaign": {
+    "gates_passed": true,
+    "fresh_candidate_nx_renders": 24,
+    "unchanged_candidate_renders_reused": 12,
+    "frozen_baseline_nx_renders": 36,
+    "luts": 9,
+    "reused_scenes": 4,
+    "candidate_mean_delta_e76": 1.9561520440494629,
+    "previous_mean_delta_e76": 2.126804541673752,
+    "improvement_percent": 8.023891912981767,
+    "max_prediction_mean_delta_e76": 0.760115773484542,
+    "max_prediction_p95_delta_e76": 1.5143020161290965,
+    "max_per_lut_mean_regression": 0.12386525127211634
+  },
+  "extreme_control_reference_check": {
+    "recipes": 21,
+    "worst_mean_delta_e76": 0.981063514098774,
+    "worst_p95_delta_e76": 3.305391825175343,
+    "worst_pixel_delta_e76": 29.843247203703022,
+    "qualification": "Private reference comparison including randomized full-range controls; not an NX or camera test"
+  }
 }

@@ -2,10 +2,10 @@
   "version": 1,
   "files": {
     "index.html": "a88eccd89fdbf73472f4c614f11f06c78de97bd8f23a6f8dc8779a491eb87524",
-    "app.min.js": "f11b4be00e2170df336640255df16e420faaaebde88792d476f54fc6e454486b",
-    "worker.min.js": "dde67cc31660026c37bd98b0753d699d5f1db5a98f59dcaf8c360e228a48c6c4",
+    "app.min.js": "0b94020b36accf508baa1d3afe8824c40d735cf22df38c00dacf1645256461a5",
+    "worker.min.js": "a9d99485d926cc6332244ffd61fe61138ce9983122e0c00cb0e001a30a0f3293",
     "style.min.css": "ea279cb91bf1746be6f448f6d69fb05026ac84f95689df380e5d5e664258c1b3",
     "fit.wasm": "32743c65ddf093eb5f0e7ae756d2c8c66b1179f225348263c1c1dc69851b95ce",
-    "model.json.gz": "b0a1b48d9bf034dbaec8913fec12a8a72cadf8a07338c770284833ab16a9f3d9"
+    "model.json.gz": "671055b4026cb72f4953b1e2a1fc7ecba84b227c561b3430987974c9bb03cc49"
   }
 }
