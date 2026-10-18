@@ -12,4 +12,4 @@ The distributed numerical data comes from generated color samples and derived re
 
 See [model and fitting details](CALIBRATION.md), [verification](VALIDATION.md), and [notice](NOTICE.md).
 
-The fitter increases lightness priority for strongly compressed-shadow targets, based on the LUT’s TRC-compensated gray response. This heuristic reduced the targeted regressions in the current NX test corpus; it does not guarantee a better match for every scene or LUT. See [verification](VALIDATION.md) and [model details](CALIBRATION.md).
+The shared search evaluates multiple generated tone/Grading starting points and retains its first complete solution unless another improves both fitting objectives. This is a comprehensive, computationally expensive search; it can take tens of minutes or longer, especially for complex LUTs. The model download is about 59 MB. The worker can be cancelled. Its empirical weights and stability margin are described in the model details.

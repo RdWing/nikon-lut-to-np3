@@ -1,11 +1,11 @@
 {
   "version": 1,
   "files": {
-    "index.html": "a88eccd89fdbf73472f4c614f11f06c78de97bd8f23a6f8dc8779a491eb87524",
+    "index.html": "56e8c86166be94dd5436d9fc70ab90e81d5e752480d5133ce261c66089417449",
     "app.min.js": "0b94020b36accf508baa1d3afe8824c40d735cf22df38c00dacf1645256461a5",
-    "worker.min.js": "5b88c99ecabbcd33a2623ad15647aad3b8e82336fc3461b3d848af9289729991",
+    "worker.min.js": "ef50086ef9ff725efa0599e8f28a2e67570b9da3e0cc22f0055234482b76378e",
     "style.min.css": "ea279cb91bf1746be6f448f6d69fb05026ac84f95689df380e5d5e664258c1b3",
     "fit.wasm": "32743c65ddf093eb5f0e7ae756d2c8c66b1179f225348263c1c1dc69851b95ce",
-    "model.json.gz": "671055b4026cb72f4953b1e2a1fc7ecba84b227c561b3430987974c9bb03cc49"
+    "model.json.gz": "6e13a6be97da2e1a4e89dcc35b7e670a839d47acb1ae5e195757997801a26a53"
   }
 }

@@ -1,13 +1,45 @@
 # Verification
 
-Pipeline `fixed121-synthetic-joint-v3` keeps the same synthetic model and +1.2076303781988988 EV normalization. It adds a tone-dependent fitting-priority heuristic. The rule was selected after exploratory synthetic tests and 44 NX exports. It was then frozen and checked with 16 fresh confirmation exports of the four changed recipes. Twenty exports of the five unchanged recipes were reused only after verifying exact NP3 bytes and TIFF hashes. The baseline has 36 prior NX exports. These are four reused development scenes, not independent-scene or physical-camera validation.
+Pipeline `fixed121-functional-basin-v1` uses the approved functional-v2 synthetic
+response model, fixed +1.2076303781988988 EV and recovered Flexible Color TRC.
+It broadens generated Grading/tone search while retaining the previous complete
+fit unless both primary and material objectives improve by at least 0.05.
+This is an empirical search rule, not a global-optimum guarantee.
 
-Mean error across the nine LUTs changed from 1.9562 to 1.8908 Delta E76 (3.34% lower). All four targeted LUT means improved. The other five NP3s are byte-identical, preserving their prior results. Individual regions still trade off: the largest targeted per-scene mean increase is 0.0749. One targeted garden change is effectively unchanged (about +0.001); not every scene improves. Some older pre-port regressions remain.
+The frozen nine-LUT comparison has 72 fresh NX renders across eight reused
+development scenes. Mean fit error is 1.511279376 ΔE76, versus 1.522669991 for the
+preceding candidate and 1.596284194 for the private reference. On the previous
+public model's 54 overlapping images, mean changes from 1.738545243 to
+1.421324007. These comparator populations are different and must not be merged.
 
-Worst per-image model-versus-NX mean is 0.7601; worst p95 is 1.4227 Delta E76. These satisfy the retained mean <=1 and p95 <=3 prediction gates. All render comparisons use matching geometry, sRGB, ADL Off, full-resolution 16-bit TIFF and embedded ICC conversion. Private photographs are used only for development evaluation, not distributed as fitting inputs.
+CT C mean improves from 2.101691301 to 1.999175767. The other eight fitted NP3
+byte streams are unchanged from the preceding candidate. CT C's chart and
+garden improve, but one warm indoor scene worsens by 0.12694 against that
+candidate. It remains within the frozen per-scene limits. All photographic
+comparison gates pass, including the separate recent-focus comparison.
 
-All 35 code tests pass. The actual minified worker, synthetic model and authored WebAssembly optimizer must produce byte-identical NP3s to the CLI for all nine LUTs before publication. The bundled-worker check runs under Node with local asset loading; it does not constitute camera validation.
+For 63 ordinary images, the worst per-image prediction mean is 0.433151713 and
+worst p95 is 1.136010961 ΔE76. The nine high-ISO comparisons require prepared
+full-image spatial validation: worst mean 0.554928486, worst p95 0.901281723.
+The simpler pointwise high-ISO discrepancies are retained in private evidence.
+The spatial validation state is private and is not distributed with the model.
 
-The underlying stage model is unchanged. Its prior randomized full-range reference check had worst recipe mean 0.981, worst p95 3.305 and largest individual error 29.843 Delta E76. Extreme combinations remain less accurate than the qualified recipes. This is not a complete Nikon renderer.
+Renders use matching geometry, ADL Off, exposure compensation 0, sRGB output,
+full-resolution TIFF16 with ICC, and detail settings 0/0/0. They do not qualify
+the user's sharpened variants or physical cameras. The development scenes are
+reused; held-out synthetic colors are not held-out photographs. Arbitrary LUTs,
+extreme control combinations and clipping can still produce larger errors.
 
-No photographs, LUTs, Nikon binaries, raw vendor tables, captured state, fitted recipes or NP3 banks are shipped. Generated results continue to say `nx_validation:false` and `exact_lut_cache:false`. Public build checks require an approved schema and passing qualification bound to model, numerical source and optimizer hashes. Run `node verify.mjs` to verify the distribution.
+All 123 code tests pass. Complete Node worker replays of Tech and CT C reproduce
+every branch score and final NP3 exactly. Both actual-browser runs reproduce the
+same final controls and NP3 bytes. CT C branch scores agree to floating-point
+roundoff; some nonselected Tech branch trajectories differ across engines while
+the selected result remains identical. This does not establish bit-identical
+intermediate arithmetic on every JavaScript engine or for arbitrary LUTs.
+
+The public package contains only authored code and synthetic-derived numerical
+responses. It excludes photographs, commercial LUTs, Nikon binaries, raw vendor
+tables, captured preparation state, fitted recipes and NP3 banks. Generated
+results remain `nx_validation:false` and `exact_lut_cache:false`. Model schema,
+provenance, source closure and optimizer hashes are checked separately from NX
+accuracy. Run `node verify.mjs` to verify a released distribution.
