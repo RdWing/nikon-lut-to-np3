@@ -8,10 +8,13 @@ select a saved preset by LUT name.
 
 ## Current end-to-end check
 
-CINECOLOR completed in 5m 42s in the actual browser and 432.608 seconds in Node
-on the development Mac. Concurrent runs produced identical final NP3 bytes and
-recipes. These timings are one test case, not a runtime guarantee or controlled
-comparison with the old search. Stages, elapsed time and last-progress age are
+CINECOLOR completed in 2m 30s in the actual browser and 195.703 seconds in Node
+on the development Mac. Exact-value caching and shared preparation preserve the
+previous NP3 and every report field except Node runtime. Browser reports are also exactly identical.
+104 code tests pass; scalar-stage parity checks on Tech, CT C and RED Film Bias
+match both successful results and expected qualification rejections. These timings
+are one test case, not a runtime guarantee or controlled comparison with the old
+search. Stages, elapsed time and last-progress age are
 visible while fitting; Cancel stops the browser worker.
 
 The unchanged final gate tested 1,911 synthetic gray samples: RMS 0.100946 L*,
@@ -19,9 +22,9 @@ peak 0.350975 L*, 45 rising highlight intervals, minimum relative rise 0.726708,
 and zero near-flat intervals. Reserved synthetic mean/p95 error was
 2.035085 / 7.479254 ΔE76. These are predictions, not fresh NX Studio measurements.
 
-The bounded initializer changes the search starting point and may change color
-quality. No complete nine-LUT or fresh NX qualification is claimed for this
-performance revision. A final tone failure stops export rather than silently
+The earlier bounded initializer changed the search starting point and can change
+color quality; this caching update preserves its tested output. No complete
+nine-LUT or fresh NX qualification is claimed for the bounded search. A final tone failure stops export rather than silently
 returning an unchecked preset. Finite gray tests do not prove every colored ray.
 
 ## Historical photographic evidence

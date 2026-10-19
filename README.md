@@ -21,7 +21,7 @@ The distributed numerical data comes from generated color samples and derived re
 See [model and fitting details](CALIBRATION.md), [verification](VALIDATION.md), and [notice](NOTICE.md).
 
 Fitting starts with a bounded generated tone/color seed, then refines the curve and
-color controls under highlight constraints. CINECOLOR completed in 5m 42s on the
+color controls under highlight constraints. CINECOLOR completed in 2m 30s on the
 development Mac; other LUTs and computers can take longer. The model download is
 about 59 MB. Seven stages, elapsed time and last-progress age are displayed. You
 can cancel the worker. A result that fails the final tone guard is not exported.

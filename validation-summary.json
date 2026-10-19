@@ -143,5 +143,18 @@
       0,
       0
     ]
+  },
+  "cache_optimization": {
+    "complete_cinecolor_np3_and_report_parity": true,
+    "browser_report_parity": true,
+    "cli_seconds": 195.703,
+    "browser_elapsed": "2m 30s",
+    "tests_passed": 104,
+    "scalar_stage_parity": [
+      "NIKON_TECH",
+      "CT_C",
+      "RED_FILM_BIAS"
+    ],
+    "new_nx_validation": false
   }
 }
