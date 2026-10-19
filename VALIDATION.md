@@ -8,10 +8,10 @@ select a saved preset by LUT name.
 
 ## Current end-to-end check
 
-CINECOLOR completed in 2m 30s in the actual browser and 195.703 seconds in Node
-on the development Mac. Exact-value caching and shared preparation preserve the
+CINECOLOR completed in 2m 10s in the actual browser and 167.143 seconds in Node
+on the development Mac. Exact-value caching, shared preparation and buffer reuse preserve the
 previous NP3 and every report field except Node runtime. Browser reports are also exactly identical.
-104 code tests pass; scalar-stage parity checks on Tech, CT C and RED Film Bias
+111 tests pass, including buffer ownership and sampler boundary checks; scalar-stage parity checks on Tech, CT C and RED Film Bias
 match both successful results and expected qualification rejections. These timings
 are one test case, not a runtime guarantee or controlled comparison with the old
 search. Stages, elapsed time and last-progress age are
@@ -47,3 +47,9 @@ preparation state, fitted recipes or NP3 bank are included. Generated reports
 remain `nx_validation:false`. Model provenance, hashes and dependency closure
 are audited separately from photographic accuracy. Run `node verify.mjs` in the
 released distribution to check package integrity.
+
+Prediction-buffer validation compares all 8,964 Lab rows exactly across 21
+recipes, including extreme controls and curves near clipping. Retained results
+and trace data also match. In six alternating-order paired rounds of twenty
+warmed predictions, median time changed from 259 ms to 156 ms. This excludes
+preparation and measures the hot prediction loop; it is not a full-fit speed claim.

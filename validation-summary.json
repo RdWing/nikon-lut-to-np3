@@ -156,5 +156,23 @@
       "RED_FILM_BIAS"
     ],
     "new_nx_validation": false
+  },
+  "prediction_buffer_optimization": {
+    "complete_cinecolor_np3_and_report_parity": true,
+    "browser_report_parity": true,
+    "cli_seconds": 167.143,
+    "browser_elapsed": "2m 10s",
+    "tests_passed": 111,
+    "exact_prediction_recipes": 21,
+    "rows_per_recipe": 8964,
+    "retained_prediction_storage_checked": true,
+    "trace_exact": true,
+    "paired_prediction_benchmark": {
+      "rounds": 6,
+      "predictions_per_round": 20,
+      "baseline_median_seconds": 0.2587424165000011,
+      "candidate_median_seconds": 0.15556618750000054
+    },
+    "new_nx_validation": false
   }
 }
