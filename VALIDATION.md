@@ -1,53 +1,46 @@
-> Current release (October 18): highlight-constrained joint fitting is now the default.
-> +1.21 EV and the Flexible Color TRC remain fixed. Twenty fresh NX renders of
-> Tech and CT E preserved measured highlight separation but failed prior color
-> preservation limits, especially in warm indoor colors. This release accepts
-> those known regressions; it is not a passing nine-LUT qualification. A LUT
-> that cannot satisfy the model's tone constraints returns an error instead of
-> an unchecked preset. Earlier results below describe historical versions.
+# Verification and limits
 
-# Verification
+The current pipeline is `fixed121-bounded-highlight-v1`. Both apps use the same
+synthetic response model, fixed +1.2076303781988988 EV and Flexible Color TRC.
+It begins with a bounded generated seed, then runs highlight separation, tone/color
+balancing, constrained joint refinement and final color refinement. It does not
+select a saved preset by LUT name.
 
-Pipeline `fixed121-feasible-color-experimental-v1` uses the approved functional-v2 synthetic
-response model, fixed +1.2076303781988988 EV and recovered Flexible Color TRC.
-It broadens generated Grading/tone search while retaining the previous complete
-fit unless both primary and material objectives improve by at least 0.05.
-This is an empirical search rule, not a global-optimum guarantee.
+## Current end-to-end check
 
-The frozen nine-LUT comparison has 72 fresh NX renders across eight reused
-development scenes. Mean fit error is 1.511279376 ΔE76, versus 1.522669991 for the
-preceding candidate and 1.596284194 for the private reference. On the previous
-public model's 54 overlapping images, mean changes from 1.738545243 to
-1.421324007. These comparator populations are different and must not be merged.
+CINECOLOR completed in 5m 42s in the actual browser and 432.608 seconds in Node
+on the development Mac. Concurrent runs produced identical final NP3 bytes and
+recipes. These timings are one test case, not a runtime guarantee or controlled
+comparison with the old search. Stages, elapsed time and last-progress age are
+visible while fitting; Cancel stops the browser worker.
 
-CT C mean improves from 2.101691301 to 1.999175767. The other eight fitted NP3
-byte streams are unchanged from the preceding candidate. CT C's chart and
-garden improve, but one warm indoor scene worsens by 0.12694 against that
-candidate. It remains within the frozen per-scene limits. All photographic
-comparison gates pass, including the separate recent-focus comparison.
+The unchanged final gate tested 1,911 synthetic gray samples: RMS 0.100946 L*,
+peak 0.350975 L*, 45 rising highlight intervals, minimum relative rise 0.726708,
+and zero near-flat intervals. Reserved synthetic mean/p95 error was
+2.035085 / 7.479254 ΔE76. These are predictions, not fresh NX Studio measurements.
 
-For 63 ordinary images, the worst per-image prediction mean is 0.433151713 and
-worst p95 is 1.136010961 ΔE76. The nine high-ISO comparisons require prepared
-full-image spatial validation: worst mean 0.554928486, worst p95 0.901281723.
-The simpler pointwise high-ISO discrepancies are retained in private evidence.
-The spatial validation state is private and is not distributed with the model.
+The bounded initializer changes the search starting point and may change color
+quality. No complete nine-LUT or fresh NX qualification is claimed for this
+performance revision. A final tone failure stops export rather than silently
+returning an unchecked preset. Finite gray tests do not prove every colored ray.
 
-Renders use matching geometry, ADL Off, exposure compensation 0, sRGB output,
-full-resolution TIFF16 with ICC, and detail settings 0/0/0. They do not qualify
-the user's sharpened variants or physical cameras. The development scenes are
-reused; held-out synthetic colors are not held-out photographs. Arbitrary LUTs,
-extreme control combinations and clipping can still produce larger errors.
+## Historical photographic evidence
 
-All 123 code tests pass. Complete Node worker replays of Tech and CT C reproduce
-every branch score and final NP3 exactly. Both actual-browser runs reproduce the
-same final controls and NP3 bytes. CT C branch scores agree to floating-point
-roundoff; some nonselected Tech branch trajectories differ across engines while
-the selected result remains identical. This does not establish bit-identical
-intermediate arithmetic on every JavaScript engine or for arbitrary LUTs.
+The preceding constrained search had twenty fresh NX renders of Tech and CT E.
+Measured highlights passed, but color-preservation limits failed, especially in
+warm indoor colors. Those known limits remain; the runtime check does not erase
+them. Earlier basin-search results covered 72 renders and nine LUTs, but used a
+different search. They do not qualify this revision.
 
-The public package contains only authored code and synthetic-derived numerical
-responses. It excludes photographs, commercial LUTs, Nikon binaries, raw vendor
-tables, captured preparation state, fitted recipes and NP3 banks. Generated
-results remain `nx_validation:false` and `exact_lut_cache:false`. Model schema,
-provenance, source closure and optimizer hashes are checked separately from NX
-accuracy. Run `node verify.mjs` to verify a released distribution.
+The model was developed with matching lens geometry, ADL Off, sRGB, full-resolution
+TIFF16 and 0/0/0 detail. Check each new preset on representative images in NX Studio.
+An NP3 approximates a LUT; arbitrary LUTs need not be representable by these controls.
+
+## Public data boundary
+
+Only authored code and synthetic-derived numerical responses are distributed.
+No photographs, commercial LUTs, Nikon binaries, raw vendor tables, captured
+preparation state, fitted recipes or NP3 bank are included. Generated reports
+remain `nx_validation:false`. Model provenance, hashes and dependency closure
+are audited separately from photographic accuracy. Run `node verify.mjs` in the
+released distribution to check package integrity.

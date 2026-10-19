@@ -14,10 +14,14 @@ Load a 3D `.cube` LUT with Rec.2020/N-Log input and Rec.709/BT.1886 output, then
 
 The fitter jointly adjusts an adaptive custom tone curve, Color Blender, Color Grading and global saturation using a synthetic response model. It compensates for the Flexible Color TRC and keeps photographic normalization fixed at +1.207630378 EV. Use sRGB and Active D-Lighting Off. **Do not add that EV value as camera exposure compensation.**
 
-Every generated result is a prediction that should be checked in NX Studio. A single brightness curve and Nikon's available color controls cannot reproduce every 3D LUT exactly. There is no exact-LUT lookup, preset catalog or measured-recipe fallback. The comparison download uses an identity custom curve as a starting point.
+Every generated result is a prediction that should be checked in NX Studio. A single brightness curve and Nikon's available color controls cannot reproduce every 3D LUT exactly. There is no exact-LUT lookup, preset catalog or measured-recipe fallback.
 
 The distributed numerical data comes from generated color samples and derived response experiments. It contains no source photographs, private image-calibration samples, Nikon binaries, raw vendor tables, prepared memory, user LUTs or validated presets.
 
 See [model and fitting details](CALIBRATION.md), [verification](VALIDATION.md), and [notice](NOTICE.md).
 
-The shared search evaluates multiple generated tone/Grading starting points and retains its first complete solution unless another improves both fitting objectives. This is a comprehensive, computationally expensive search; it can take tens of minutes or longer, especially for complex LUTs. The model download is about 59 MB. The worker can be cancelled. Its empirical weights and stability margin are described in the model details.
+Fitting starts with a bounded generated tone/color seed, then refines the curve and
+color controls under highlight constraints. CINECOLOR completed in 5m 42s on the
+development Mac; other LUTs and computers can take longer. The model download is
+about 59 MB. Seven stages, elapsed time and last-progress age are displayed. You
+can cancel the worker. A result that fails the final tone guard is not exported.

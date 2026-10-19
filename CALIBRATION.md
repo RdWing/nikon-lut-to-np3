@@ -24,17 +24,33 @@ Grading, saturation, Blender and the custom-curve/output stages are evaluated to
 
 The recovered Flexible Color TRC is fixed and distinct from the Neutral Picture Control curve. Its gray response initializes a compensated custom curve. Optimization then evaluates the combined curve and color controls, including their effects on saturation and hue. Both curve endpoints may move; the actual encoded curve table must remain monotonic. An initial nine-point curve can grow to 20 points when insertion improves the joint objective.
 
-## Comprehensive generated search
+## Bounded generated search and tone protection
 
-The fitter adjusts 36 color controls and the custom curve. Five basic tone controls are superseded by the custom curve; spatial controls cannot be inferred from a color LUT. Grading uses Cartesian tint coordinates for numerical proposals, then quantizes back to Nikon Hue/Saturation. Feasible two-sided differences, joint refinement and adaptive curve insertion respect encoded control ranges.
+The fitter adjusts 36 color controls and a custom curve of up to 20 points. Five
+basic tone controls are superseded by the custom curve; spatial controls cannot
+be inferred from a color LUT. Grading proposals use Cartesian tint coordinates,
+then quantize to Nikon Hue/Saturation. Curve knots and the interpolated table must
+remain monotonic.
 
-The first search generates alternatives through primary and proposal evaluators on identical synthetic samples, then refines every distinct generated recipe under the same primary evaluator. A bounded chroma polish follows. No stored recipe or LUT-name lookup supplies a starting point.
+Initialization generates a TRC-compensated nine-point curve and reset color
+controls, with four joint iterations per refinement phase. It replaces the older
+full portfolio and basin search. Subsequent stages solve highlight headroom,
+balance tone/color, refine constrained controls and test joint tone/color proposals.
+No saved recipe or LUT-name lookup supplies an answer.
 
-The second search generates up to 20 alternatives from that newly fitted result: Grading resets and sign reversals, Blending endpoints, relative custom-curve powers, and eight untinted shadow/midtone/highlight luminance corners with resampled curve knots. Each receives joint refinement and bounded material polish. Invalid quantized curves are omitted. The original result is retained unless an alternative improves both objectives by at least 0.05; eligible alternatives compete on the material objective. This margin is a stability heuristic, not statistical confidence.
+The joint proposal objective combines perceptual color residuals, stratum balance
+and brightness/chroma neighbor differences, with warm/foliage priorities. Final
+feasible refinement minimizes training mean Delta E76 within an absolute tone
+envelope: gray RMS ≤0.15 L*, peak ≤0.4 L*, and shadow/midtone/highlight RMS
+≤0.15/0.20/0.20 L*. The final serialized output must also retain at least eight
+rising highlight intervals, minimum relative rise ≥0.5 and no near-flat intervals.
+Failed constraints stop export. No tolerance was relaxed for the performance update.
 
-The primary objective combines a hybrid Delta E76/Delta E00 residual, RMS stratum error and a neighbor-difference term that measures changes across brightness and chroma. Weighting mixes uniform and equal-stratum mass, with additional warm-color coverage. The material objective emphasizes supported warm and foliage target colors while limiting degradation of the primary score. There is no control-size penalty or exposure optimization in this release. These search weights are empirical choices tested on a development corpus, not recovered Nikon processing rules.
-
-Reserved errors are recomputed from the final quantized recipe and reported as ordinary, unweighted Delta E76. Reserved synthetic colors are not independent photographs. A small prediction score does not guarantee fidelity for an arbitrary LUT, especially at clipping or extreme control combinations. Complete search is computationally expensive and runs locally in a cancellable worker.
+These objectives are empirical fitting choices, not Nikon processing rules.
+Changing initialization can change the selected color tradeoff; it is not promised
+to match the former slow search. Reserved synthetic errors are predictions, not
+independent photographs. Check each new result in NX Studio, especially clipping
+and saturated colors. Runtime and photographic qualifications are separate.
 
 ## Distribution boundary
 
