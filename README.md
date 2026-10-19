@@ -1,3 +1,11 @@
+> Current release (October 18): highlight-constrained joint fitting is now the default.
+> +1.21 EV and the Flexible Color TRC remain fixed. Twenty fresh NX renders of
+> Tech and CT E preserved measured highlight separation but failed prior color
+> preservation limits, especially in warm indoor colors. This release accepts
+> those known regressions; it is not a passing nine-LUT qualification. A LUT
+> that cannot satisfy the model's tone constraints returns an error instead of
+> an unchecked preset. Earlier results below describe historical versions.
+
 # LUT to Picture Control
 
 **[Open the browser app](https://rdwing.github.io/nikon-lut-to-np3/)**

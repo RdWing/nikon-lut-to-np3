@@ -1,6 +1,14 @@
+> Current release (October 18): highlight-constrained joint fitting is now the default.
+> +1.21 EV and the Flexible Color TRC remain fixed. Twenty fresh NX renders of
+> Tech and CT E preserved measured highlight separation but failed prior color
+> preservation limits, especially in warm indoor colors. This release accepts
+> those known regressions; it is not a passing nine-LUT qualification. A LUT
+> that cannot satisfy the model's tone constraints returns an error instead of
+> an unchecked preset. Earlier results below describe historical versions.
+
 # Verification
 
-Pipeline `fixed121-functional-basin-v1` uses the approved functional-v2 synthetic
+Pipeline `fixed121-feasible-color-experimental-v1` uses the approved functional-v2 synthetic
 response model, fixed +1.2076303781988988 EV and recovered Flexible Color TRC.
 It broadens generated Grading/tone search while retaining the previous complete
 fit unless both primary and material objectives improve by at least 0.05.

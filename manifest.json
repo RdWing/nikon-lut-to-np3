@@ -2,8 +2,8 @@
   "version": 1,
   "files": {
     "index.html": "56e8c86166be94dd5436d9fc70ab90e81d5e752480d5133ce261c66089417449",
-    "app.min.js": "0b94020b36accf508baa1d3afe8824c40d735cf22df38c00dacf1645256461a5",
-    "worker.min.js": "ef50086ef9ff725efa0599e8f28a2e67570b9da3e0cc22f0055234482b76378e",
+    "app.min.js": "8bff3568a354998d0b6dc60eb3a2d0426ac26a0a1697ddfd2009b76f504b33e7",
+    "worker.min.js": "d2cd6b1de86d2d8d25abf66edcf6ae28f0d3556d8ac1496c5de6d172080c45f6",
     "style.min.css": "ea279cb91bf1746be6f448f6d69fb05026ac84f95689df380e5d5e664258c1b3",
     "fit.wasm": "32743c65ddf093eb5f0e7ae756d2c8c66b1179f225348263c1c1dc69851b95ce",
     "model.json.gz": "6e13a6be97da2e1a4e89dcc35b7e670a839d47acb1ae5e195757997801a26a53"

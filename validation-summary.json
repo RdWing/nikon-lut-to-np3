@@ -1,52 +1,76 @@
 {
-  "passed": true,
-  "qualification": "Fresh nine-LUT NX gates, complete worker replay, browser final NP3 equality and synthetic data audit pass",
+  "passed": false,
+  "qualification": "Owner-authorized release with known color regressions",
+  "pipeline": "fixed121-feasible-color-experimental-v1",
+  "model_sha256": "6e13a6be97da2e1a4e89dcc35b7e670a839d47acb1ae5e195757997801a26a53",
   "nx_validation": false,
   "exact_lut_cache": false,
-  "model_sha256": "6e13a6be97da2e1a4e89dcc35b7e670a839d47acb1ae5e195757997801a26a53",
-  "pipeline": "fixed121-functional-basin-v1",
-  "synthetic_samples": 8964,
-  "source_colors": 4482,
-  "training_rows": 4484,
-  "reserved_rows": 4480,
-  "code_tests_passed": 123,
-  "qualification_campaign": {
-    "gates_passed": true,
-    "fresh_candidate_nx_renders": 72,
-    "exploratory_nx_renders": 8,
-    "luts": 9,
-    "reused_scenes": 8,
-    "candidate_mean_delta_e76": 1.511279375881929,
-    "private_reference_mean_delta_e76": 1.59628419404235,
-    "previous_candidate_mean_delta_e76": 1.5226699907437844,
-    "public_overlap": {
-      "rows": 54,
-      "reference_mean_delta_e76": 1.7385452429419515,
-      "candidate_mean_delta_e76": 1.4213240068696233
-    },
-    "ordinary_prediction_images": 63,
-    "max_prediction_mean_delta_e76": 0.4331517134534888,
-    "max_prediction_p95_delta_e76": 1.1360109605099655,
-    "prepared_spatial_images": 9,
-    "max_spatial_prediction_mean_delta_e76": 0.5549284859248764,
-    "max_spatial_prediction_p95_delta_e76": 0.9012817234496375,
-    "unchanged_prior_candidate_np3s": 8
-  },
-  "limits": [
-    "Reused development scenes, not unseen-scene or physical-camera validation",
-    "High-ISO spatial checks use private external prepared state excluded from public model",
-    "Every generated recipe remains a prediction",
-    "Generic stability margin and objective weights are empirical research choices"
+  "fresh_candidate_renders": 20,
+  "tested_luts": 2,
+  "no_shelf_measured": true,
+  "color_preservation_passed": false,
+  "exposure_ev": 1.2076303781988988,
+  "detail": [
+    0,
+    0,
+    0
   ],
-  "application_replay": {
-    "node_complete_branch_parity": [
-      "NIKON_TECH",
-      "CT_C"
+  "limits": [
+    "No all-nine qualification of this revision",
+    "Finite gray-axis tests do not prove all colored highlight behavior",
+    "Warm indoor color regressions remain"
+  ],
+  "historical_basin_qualification": {
+    "passed": true,
+    "qualification": "Fresh nine-LUT NX gates, complete worker replay, browser final NP3 equality and synthetic data audit pass",
+    "nx_validation": false,
+    "exact_lut_cache": false,
+    "model_sha256": "6e13a6be97da2e1a4e89dcc35b7e670a839d47acb1ae5e195757997801a26a53",
+    "pipeline": "fixed121-functional-basin-v1",
+    "synthetic_samples": 8964,
+    "source_colors": 4482,
+    "training_rows": 4484,
+    "reserved_rows": 4480,
+    "code_tests_passed": 123,
+    "qualification_campaign": {
+      "gates_passed": true,
+      "fresh_candidate_nx_renders": 72,
+      "exploratory_nx_renders": 8,
+      "luts": 9,
+      "reused_scenes": 8,
+      "candidate_mean_delta_e76": 1.511279375881929,
+      "private_reference_mean_delta_e76": 1.59628419404235,
+      "previous_candidate_mean_delta_e76": 1.5226699907437844,
+      "public_overlap": {
+        "rows": 54,
+        "reference_mean_delta_e76": 1.7385452429419515,
+        "candidate_mean_delta_e76": 1.4213240068696233
+      },
+      "ordinary_prediction_images": 63,
+      "max_prediction_mean_delta_e76": 0.4331517134534888,
+      "max_prediction_p95_delta_e76": 1.1360109605099655,
+      "prepared_spatial_images": 9,
+      "max_spatial_prediction_mean_delta_e76": 0.5549284859248764,
+      "max_spatial_prediction_p95_delta_e76": 0.9012817234496375,
+      "unchanged_prior_candidate_np3s": 8
+    },
+    "limits": [
+      "Reused development scenes, not unseen-scene or physical-camera validation",
+      "High-ISO spatial checks use private external prepared state excluded from public model",
+      "Every generated recipe remains a prediction",
+      "Generic stability margin and objective weights are empirical research choices"
     ],
-    "browser_final_np3_equality": [
-      "NIKON_TECH",
-      "CT_C"
-    ],
-    "intermediate_browser_arithmetic_bit_identical": false
-  }
+    "application_replay": {
+      "node_complete_branch_parity": [
+        "NIKON_TECH",
+        "CT_C"
+      ],
+      "browser_final_np3_equality": [
+        "NIKON_TECH",
+        "CT_C"
+      ],
+      "intermediate_browser_arithmetic_bit_identical": false
+    }
+  },
+  "synthetic_samples": 8964
 }
